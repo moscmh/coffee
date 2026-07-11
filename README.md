@@ -1,0 +1,4 @@
+# An Ongoing Journey to Make Better Coffee
+I love coffee. I am not a professional barista but I've been making coffee at home, mainly using an espresso machine or pour-over filter. Sometimes the coffee was tasteless while sometimes it was full of aromas and flavours. I've been logging the extractions over the years, including variables such as the origin of the coffee beans, size of grinds, amount of grinds, etc. and the score of the resulting cup of coffee based on my subjective evaluation. Lately, I decided to make good use of the data to learn how to make the best coffee using my home setup using data analytics and machine learning models.
+
+I aim to continuously update the database and retrain the models over time. The objective is to develop a mature, reliable machine learning model that allows me to consistently produce high-quality coffee.
