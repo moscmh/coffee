@@ -1,6 +1,8 @@
 # Python Libraries
-import pandas as pd
+from add_data import retrieve_data
+
 import numpy as np
+import pandas as pd
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -12,7 +14,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import mean_squared_error, r2_score
 
 # Import Data
-coffee = pd.read_csv('data/coffee_cleaned.csv')
+coffee = retrieve_data()
 
 # Separate by extraction method
 def get_all_origins(df):
