@@ -7,3 +7,12 @@ INFO:__main__:ESP MSE: 0.817
 INFO:__main__:FIL R2: 0.125
 INFO:__main__:FIL MSE: 0.929
 INFO:__main__:Retraining models completed at 20260713_234154
+INFO:__main__:Retraining models started at 20260715_120117
+INFO:__main__:Data retrieved with shape: (171, 9)
+INFO:__main__:ESP best params: {'criterion': 'squared_error', 'learning_rate': 0.1, 'max_depth': 1, 'min_samples_leaf': 4, 'min_samples_split': 2, 'n_estimators': 50}
+INFO:__main__:FIL best params: {'criterion': 'squared_error', 'learning_rate': 0.2, 'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 3}
+INFO:__main__:ESP R2: 0.314
+INFO:__main__:ESP MSE: 0.678
+INFO:__main__:FIL R2: 0.178
+INFO:__main__:FIL MSE: 0.809
+INFO:__main__:Retraining models completed at 20260715_120221

@@ -14,7 +14,7 @@ import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import root_mean_squared_error, r2_score
 
 def retrain_models():
     '''
@@ -69,14 +69,13 @@ def retrain_models():
     fil_y = filter_coffee['Score']
 
     # Split
-    def stratified_split(X, y, test_size=.2, random_state=42):
+    def stratified_split(X, test_size=.2, random_state=42):
         '''
         Perform a stratified split of the data based on the origin of the coffee beans.
         -----
         Parameters
         -----
             X (pd.DataFrame): The feature set.  
-            y (pd.Series): The target variable.  
             test_size (float): The proportion of the dataset to include in the test split.  
             random_state (int): The seed used by the random number generator.
         
@@ -85,19 +84,19 @@ def retrain_models():
             list: The indices of the test set.
         '''
         idx = []
-        origins = X.iloc[0, 6:].index
+        origins = X.iloc[0, 4:].index
 
         for o in origins:
             idx += X.loc[X[o] == True].sample(frac=test_size, random_state=random_state).index.to_list()
         return idx
 
-    esp_test_idx = stratified_split(esp_X, esp_y, test_size=.2, random_state=42)
+    esp_test_idx = stratified_split(esp_X, test_size=.2, random_state=42)
     esp_X_train = esp_X.drop(index=esp_test_idx).reset_index(drop=True)
     esp_y_train = esp_y.drop(index=esp_test_idx).reset_index(drop=True)
     esp_X_test = esp_X.loc[esp_test_idx].reset_index(drop=True)
     esp_y_test = esp_y.loc[esp_test_idx].reset_index(drop=True)
 
-    fil_test_idx = stratified_split(fil_X, fil_y, test_size=.2, random_state=42)
+    fil_test_idx = stratified_split(fil_X, test_size=.2, random_state=42)
     fil_X_train = fil_X.drop(index=fil_test_idx).reset_index(drop=True)
     fil_y_train = fil_y.drop(index=fil_test_idx).reset_index(drop=True)
     fil_X_test = fil_X.loc[fil_test_idx].reset_index(drop=True)
@@ -165,26 +164,26 @@ def retrain_models():
     # Evaluation
     esp_y_pred = esp_gb_grid.best_estimator_.predict(esp_X_test)
     esp_r2 = r2_score(esp_y_test, esp_y_pred)
-    esp_mse = mean_squared_error(esp_y_test, esp_y_pred)
+    esp_rmse = root_mean_squared_error(esp_y_test, esp_y_pred)
     print(f"ESP R2: {esp_r2:.3f}")
-    print(f"ESP MSE: {esp_mse:.3f}")
+    print(f"ESP RMSE: {esp_rmse:.3f}")
 
     fil_y_pred = fil_gb_grid.best_estimator_.predict(fil_X_test)
     fil_r2 = r2_score(fil_y_test, fil_y_pred)
-    fil_mse = mean_squared_error(fil_y_test, fil_y_pred)
+    fil_rmse = root_mean_squared_error(fil_y_test, fil_y_pred)
     print(f"FIL R2: {fil_r2:.3f}")
-    print(f"FIL MSE: {fil_mse:.3f}")
+    print(f"FIL RMSE: {fil_rmse:.3f}")
 
     logger.info(f"ESP R2: {esp_r2:.3f}")
-    logger.info(f"ESP MSE: {esp_mse:.3f}")
+    logger.info(f"ESP RMSE: {esp_rmse:.3f}")
     logger.info(f"FIL R2: {fil_r2:.3f}")
-    logger.info(f"FIL MSE: {fil_mse:.3f}")
+    logger.info(f"FIL RMSE: {fil_rmse:.3f}")
 
     # Record performance
     with open('training_performance.csv', 'a') as f:
         if f.tell() == 0:
-            f.write("Date,Time,Data Shape,ESP R2,ESP MSE,FIL R2,FIL MSE\n")
-        f.write(f"{time.strftime('%Y%m%d', time.localtime())},{time.strftime('%H%M%S', time.localtime())},{coffee.shape},{esp_r2:.3f},{esp_mse:.3f},{fil_r2:.3f},{fil_mse:.3f}\n")
+            f.write("Date,Time,Data Shape,ESP R2,ESP RMSE,FIL R2,FIL RMSE\n")
+        f.write(f"{time.strftime('%Y%m%d', time.localtime())},{time.strftime('%H%M%S', time.localtime())},{coffee.shape},{esp_r2:.3f},{esp_rmse:.3f},{fil_r2:.3f},{fil_rmse:.3f}\n")
     joblib.dump(esp_gb_grid.best_estimator_, "model/esp_gb_model.pkl")
     joblib.dump(fil_gb_grid.best_estimator_, "model/fil_gb_model.pkl")
 

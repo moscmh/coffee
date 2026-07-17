@@ -61,15 +61,15 @@ def add_data(data: pd.DataFrame) -> None:
 def main():
     new_data = pd.DataFrame(
         {
-            'Date': '2026-07-13',
+            'Date': '2026-07-14',
             'Method': 'Filter',
             'Origin': 'Ethiopia',
             'Size': 53,
-            'Grind': 16.4,
-            'Time': 170,
+            'Grind': 16.5,
+            'Time': 180,
             'Output': 300,
-            'Note': 'Great aroma',
-            'Score': 5
+            'Note': '',
+            'Score': 4
         },
         index=[0]
         )
