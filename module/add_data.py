@@ -22,7 +22,7 @@ def retrieve_data() -> pd.DataFrame:
     script_dir = Path(__file__).parent
     global data_dir
     data_dir = script_dir.parent / "data"
-    coffee = pd.read_csv(data_dir / 'coffee_cleaned.csv')
+    coffee = pd.read_csv(data_dir / 'coffee_v2_cleaned.csv')
     return coffee
 
 def add_data(data: pd.DataFrame) -> None:
@@ -39,7 +39,7 @@ def add_data(data: pd.DataFrame) -> None:
     '''
     coffee = retrieve_data()
     coffee = pd.concat([coffee, data], ignore_index=True)
-    coffee.to_csv(data_dir / 'coffee_cleaned.csv', index=False)
+    coffee.to_csv(data_dir / 'coffee_v2_cleaned.csv', index=False)
 
     coffee.to_csv(data_dir / f'backup/coffee_{time.strftime("%Y-%m-%d_%H-%M-%S", time.localtime())}.csv', index=False)
     backup_dir = data_dir / 'backup'
