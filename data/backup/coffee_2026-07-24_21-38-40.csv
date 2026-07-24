@@ -1,0 +1,6 @@
+Date,Method,Temperature,Humidity,Origin,Elevation,Region,Process,Varietal,DateRoast,DateOpen,Size,Grind,WaterTemp,Time,Output,Note,Score
+2026-07-24,Filter,9,45,Ethiopia,2050,Guji,Natural,Heirloom,2026-06-11,2026-07-18,53,16.5,98,180,300,,5
+2026-07-23,Filter,6,80,Ethiopia,2050,Guji,Natural,Heirloom,2026-06-11,2026-07-18,53,16.5,99,180,303,,4
+2026-07-22,Filter,7,90,Ethiopia,2050,Guji,Natural,Heirloom,2026-06-11,2026-07-18,53,16.7,98,180,300,,4
+2026-07-21,Filter,14,30,Ethiopia,2050,Guji,Natural,Heirloom,2026-06-11,2026-07-18,53,16.4,96,180,300,,4
+2026-07-21,Filter,16,15,Ethiopia,2050,Guji,Natural,Heirloom,2026-06-11,2026-07-18,53,16.5,98,180,300,,5
